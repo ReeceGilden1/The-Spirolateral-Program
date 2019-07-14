@@ -133,10 +133,20 @@ class Gui:
         self.input_section_3.delete(0, END)
 
     def next_btn(self):
-        print(5)
+        self.index+=1
+        if self.index == len(self.drs)-1:
+            self.next_btn.configure(state = DISABLED)
+
+        self.prev_btn.configure(state = NORMAL)
+        self.show_data()
 
     def previous(self):
-        print(6)
+        self.index -= 1
+        if self.index == 0:
+            self.prev_btn.configure(state = DISABLED)
+
+        self.next_btn.configure(state = NORMAL)
+        self.show_data()
 
     def show_data(self):
         self.name.configure(text = self.drs[self.index].name)
