@@ -84,7 +84,12 @@ class Gui:
         self.index = 0
 
     def info(self):
-        print(1)
+            self.output_section_1.configure(text = "")
+            self.output_section_2.configure(text = "")
+            self.output_section_3.configure(text = "")
+
+            self.output_section_1.configure(text = "Welcome to the Spirolateral Program. \nThis program finds the digital root of a times table. \nThank you and enjoy your stay.:")
+            self.output_section_1.grid(row = 0, column = 0, sticky = W)
 
     def add_root(self):
         print(2)
@@ -93,7 +98,9 @@ class Gui:
         print(3)
 
     def clear(self):
-        print(4)
+        self.input_section_1.delete(0, END)
+        self.input_section_2.delete(0, END)
+        self.input_section_3.delete(0, END)
 
     def next_btn(self):
         print(5)
