@@ -92,10 +92,40 @@ class Gui:
             self.output_section_1.grid(row = 0, column = 0, sticky = W)
 
     def add_root(self):
-        print(2)
+        self.output_section_1.configure(text = "")
+        self.output_section_2.configure(text = "")
+        self.output_section_3.configure(text = "")
+
+        self.output_section_1.configure(text = "Name:")
+        self.output_section_2.configure(text = "Times Table:")
+
+        self.output_section_1.grid(row = 0, column = 0, sticky = W)
+        self.output_section_2.grid(row = 1, column = 0, sticky = W)
+
+        self.input_section_1.grid(row = 0, column = 1)
+        self.input_section_2.grid(row = 1, column = 1)
+
+        self.button_enter.grid(row = 3, column = 0)
+
+        self.button_enter.configure(command = self.process_add)
+
+        self.input_section_1.delete(0, END)
+        self.input_section_2.delete(0, END)
 
     def process_add(self):
-        print(3)
+        find_root = int(self.input_section_2.get())
+        find_name = str(self.input_section_1.get())
+
+        self.drs.append(Spirolateral(find_name,
+                                      (self.digital_root(find_root))))
+        if len(self.drs)==1:
+            self.next_btn.configure(state = DISABLED)
+            self.show_data()
+        if len(self.drs)>1:
+            self.next_btn.configure(state = NORMAL)
+            self.show_data()
+
+        self.clear()
 
     def clear(self):
         self.input_section_1.delete(0, END)
@@ -109,7 +139,8 @@ class Gui:
         print(6)
 
     def show_data(self):
-        print(7)
+        self.name.configure(text = self.drs[self.index].name)
+        self.pin.configure(text = self.drs[self.index].dr_list)
 
     def digital_root(self, n):
         print(8)
